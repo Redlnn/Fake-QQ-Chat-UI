@@ -24,3 +24,7 @@
 - 项目使用的是 TS 语音而不是 JS
 - 本项目中的 svg 图片为自行绘制，采用 [`CC BY-NC-SA 4.0`](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh) 协议进行共享
 - 本项目中非 svg 的其他媒体（如：`*.mp3`、`*.jpg`、`*.png`、`*.ico` 等）不属于开源部分
+
+## 预览
+
+![预览](./preview.png)
