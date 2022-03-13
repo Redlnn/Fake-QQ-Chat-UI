@@ -105,20 +105,20 @@ export default defineComponent({
 .bubble {
   position: relative;
   padding: 12px;
-  min-height: 22px;
-  min-width: 22px;
+  min-height: 1em;
+  min-width: 1em;
   border-radius: 15px;
-  word-wrap: break-word;
+  overflow-wrap: break-word;
   background-color: white;
 }
 
 .bubble > img {
   display: block;
   width: 30vw;
-  min-width: 250px;
+  min-width: 200px;
+  max-width: 300px;
+  max-height: 350px;
   margin: 5px 0;
-  margin-top: 5px;
-  margin-bottom: 5px;
   border-radius: 10px;
 }
 </style>

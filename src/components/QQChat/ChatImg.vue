@@ -26,6 +26,7 @@ export default defineComponent({
 .chat-content:deep() > img {
   width: 30vw;
   min-width: 250px;
+  max-height: 400px;
   border-radius: 15px;
 }
 </style>

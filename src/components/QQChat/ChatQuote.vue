@@ -37,8 +37,8 @@ export default defineComponent({
   display: block;
   margin-top: 5px;
   margin-bottom: 5px;
-  width: 15vw;
-  min-width: 180px;
+  max-width: 180px;
+  max-height: 200px;
   border-radius: 10px;
 }
 </style>

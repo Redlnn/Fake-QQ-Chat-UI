@@ -32,9 +32,11 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .bubble {
+  min-width: 180px;
+  max-width: 350px;
   padding-bottom: 5px;
-  word-wrap: break-word;
   border-bottom: 1.8em solid #f7f7f7;
+  overflow-wrap: break-word;
 }
 
 .forward-title {
