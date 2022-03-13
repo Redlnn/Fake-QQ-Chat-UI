@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import ChatWindow from '@/components/QQChat/ChatWindow.vue'
-import ChatToast from '@/components/QQChat/ChatToast.vue'
-import ChatMsg from '@/components/QQChat/ChatMsg.vue'
+import ChatFile from '@/components/QQChat/ChatFile.vue'
 import ChatImg from '@/components/QQChat/ChatImg.vue'
+import ChatMsg from '@/components/QQChat/ChatMsg.vue'
 import ChatQuote from '@/components/QQChat/ChatQuote.vue'
+import ChatToast from '@/components/QQChat/ChatToast.vue'
 import ChatVoice from '@/components/QQChat/ChatVoice.vue'
+import ChatWindow from '@/components/QQChat/ChatWindow.vue'
 import ForwardChat from '@/components/QQChat/ForwardChat.vue'
 </script>
 
@@ -53,6 +54,15 @@ import ForwardChat from '@/components/QQChat/ForwardChat.vue'
         '群菜喵: 高中考试这么多年的大样本重复试验，已经总结出了套路，能够保证区分度的同时，还能控制好试题难度。',
         '群菜鸡: 喵？',
       ]"
+      counts="4"
+    />
+    <ChatMsg name="GraiaX" onright>来一打紧身衣涩图</ChatMsg>
+    <ChatFile
+      name="EroEroBot"
+      filename="secret.zip"
+      filesize="6.33MB"
+      :fileicon="require('@/assets/logo.png')"
+      onclick="window.open('https:\/\/www.bilibili.com/video/BV1GJ411x7h7', '_blank')"
     />
   </ChatWindow>
 </template>
