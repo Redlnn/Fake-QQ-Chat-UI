@@ -3,7 +3,7 @@
     <div :style="{ 'background-image': `url(${avatar})` }" class="chat-avatar"></div>
     <div class="chat-content">
       <div class="chat-name">{{ name }}</div>
-      <img :src="image" />
+      <img :src="src" />
     </div>
   </div>
 </template>
@@ -16,6 +16,7 @@ export default defineComponent({
   props: {
     name: { type: String, required: true },
     avatar: { type: String, required: true },
+    src: { type: String, required: true },
     onright: Boolean,
   },
 })

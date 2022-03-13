@@ -37,12 +37,12 @@ import ForwardChat from '@/components/QQChat/ForwardChat.vue'
     <ChatImg
       name="群菜鸮"
       avatar="http://q.qlogo.cn/headimg_dl?dst_uin=2948531755&spec=640"
-      :image="require('@/assets/imgs/andy-holmes-rCbdp8VCYhQ-unsplash.jpg')"
+      :src="require('@/assets/imgs/andy-holmes-rCbdp8VCYhQ-unsplash.jpg')"
     />
     <ChatVoice
       name="群菜鸡"
       avatar="http://q.qlogo.cn/headimg_dl?dst_uin=1450069615&spec=640"
-      :audio="require('@/assets/11_欧尼酱快起床.mp3')"
+      :src="require('@/assets/11_欧尼酱快起床.mp3')"
     />
     <ForwardChat
       name="群菜鸡"

@@ -11,7 +11,7 @@
               d="M35.5,25.324,20.512,14.575a1,1,0,0,0-1.589.815v21.5a1,1,0,0,0,1.589.816L35.5,26.955a1,1,0,0,0,.237-1.394A.988.988,0,0,0,35.5,25.324Z"
             />
           </svg>
-          <audio ref="audio" :src="audio" @ended="reset" @loadedmetadata="onLoadedmetadata"></audio>
+          <audio ref="audio" :src="src" @ended="reset" @loadedmetadata="onLoadedmetadata"></audio>
           <span class="voice-bar">
             <span v-for="item in getLineCount(duration)" :key="item" ref="voice-line" class="line"></span>
           </span>
@@ -28,6 +28,7 @@ export default defineComponent({
   name: 'ChatVoice',
   props: {
     name: { type: String, required: true },
+    src: { type: String, required: true },
     onright: Boolean,
   },
   data() {
