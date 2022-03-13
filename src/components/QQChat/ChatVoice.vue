@@ -3,33 +3,14 @@
     <div :style="{ 'background-image': `url(${avatar})` }" class="chat-avatar"></div>
     <div class="chat-content">
       <div class="chat-name">{{ name }}</div>
-      <div class="bubble" :onclick="playVoice">
+      <div class="bubble" :onclick="playVoice" style="cursor: pointer">
         <div class="bubble-arrow"></div>
         <div class="chat-audio">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-            <defs>
-              <filter
-                id="b"
-                x="0"
-                y="0"
-                width="52"
-                height="52"
-                filterUnits="userSpaceOnUse"
-                color-interpolation-filters="sRGB"
-              >
-                <feFlood flood-color="#fff" result="bg" />
-                <feBlend in="SourceGraphic" in2="bg" />
-              </filter>
-              <mask id="a" x="0" y="0" width="52" height="52" maskUnits="userSpaceOnUse">
-                <path
-                  style="filter: url(#b)"
-                  d="M35.5,25.324,20.512,14.575a1,1,0,0,0-1.589.815v21.5a1,1,0,0,0,1.589.816L35.5,26.955A1,1,0,0,0,35.5,25.324Z"
-                />
-              </mask>
-            </defs>
-            <g style="mask: url(#a)">
-              <circle cx="26" cy="26" r="26" />
-            </g>
+            <circle cx="26" cy="26" r="26" />
+            <path
+              d="M35.5,25.324,20.512,14.575a1,1,0,0,0-1.589.815v21.5a1,1,0,0,0,1.589.816L35.5,26.955a1,1,0,0,0,.237-1.394A.988.988,0,0,0,35.5,25.324Z"
+            />
           </svg>
           <audio ref="audio" :src="audio" @ended="reset" @loadedmetadata="onLoadedmetadata"></audio>
           <span class="voice-bar">
@@ -92,7 +73,7 @@ export default defineComponent({
         audioElem.pause()
         audioElem.currentTime = 0
         lines.forEach(line => {
-          line.style.backgroundColor = '#444444'
+          line.style.backgroundColor = '#000'
         })
         this.playFlag = false
         return
@@ -105,7 +86,7 @@ export default defineComponent({
         for (let index = 0; index < lines.length; index++) {
           if (audioElem.paused) return
           await this.sleep((this.duration * 1000) / lines.length).then(() => {
-            lines[index].style.backgroundColor = '#444444'
+            lines[index].style.backgroundColor = '#000'
           })
         }
       }
@@ -123,7 +104,14 @@ export default defineComponent({
 .chat-audio svg {
   height: 1em;
   width: 1em;
-  fill: black;
+}
+
+.chat-audio svg circle {
+  fill: #000;
+}
+
+.chat-audio svg path {
+  fill: #fff;
 }
 
 .voice-bar {
@@ -139,7 +127,7 @@ export default defineComponent({
   height: 100%;
   margin: 0 1px;
   border-radius: 2px;
-  background-color: black;
+  background-color: #000;
 }
 
 .voice-bar .line:nth-child(1n) {
