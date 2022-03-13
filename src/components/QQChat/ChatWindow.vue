@@ -80,9 +80,18 @@ export default defineComponent({
   margin-left: 15px;
   margin-right: 15px;
   border-radius: 50%;
+  background-color: #fff;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.chat-avatar-text {
+  text-align: center;
+  line-height: 42px;
+  font-size: 24px;
+  font-weight: bold;
+  background: #fff;
 }
 
 .bubble-arrow {

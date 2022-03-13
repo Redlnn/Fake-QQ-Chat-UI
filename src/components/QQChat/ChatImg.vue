@@ -1,6 +1,7 @@
 <template>
   <div class="chat-item" :class="[onright ? 'right-chat' : 'left-chat']">
-    <div :style="{ 'background-image': `url(${avatar})` }" class="chat-avatar"></div>
+    <div v-if="avatar" :style="{ 'background-image': `url(${avatar})` }" class="chat-avatar"></div>
+    <div v-else class="chat-avatar chat-avatar-text">{{ name[0] }}</div>
     <div class="chat-content">
       <div class="chat-name">{{ name }}</div>
       <img :src="src" />
@@ -15,7 +16,7 @@ export default defineComponent({
   name: 'ChatMsg',
   props: {
     name: { type: String, required: true },
-    avatar: { type: String, required: true },
+    avatar: String,
     src: { type: String, required: true },
     onright: Boolean,
   },
