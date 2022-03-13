@@ -1,6 +1,5 @@
 <template>
-  <div class="chat-item" :class="[onRight ? 'right-chat' : 'left-chat']">
-    <div :style="{ 'background-image': `url(${avatar})` }" class="chat-avatar"></div>
+  <div class="chat-item" :class="[onright ? 'right-chat' : 'left-chat']">
     <div class="chat-content">
       <div class="chat-name">{{ name }}</div>
       <div class="bubble" :onclick="playVoice" style="cursor: pointer">
@@ -29,9 +28,7 @@ export default defineComponent({
   name: 'ChatVoice',
   props: {
     name: { type: String, required: true },
-    avatar: { type: String, required: true },
-    audio: { type: String, required: true },
-    onRight: Boolean,
+    onright: Boolean,
   },
   data() {
     return {

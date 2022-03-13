@@ -1,5 +1,5 @@
 <template>
-  <div class="chat-item" :class="[onRight ? 'right-chat' : 'left-chat']">
+  <div class="chat-item" :class="[onright ? 'right-chat' : 'left-chat']">
     <div :style="{ 'background-image': `url(${avatar})` }" class="chat-avatar"></div>
     <div class="chat-content">
       <div class="chat-name">{{ name }}</div>
@@ -16,8 +16,7 @@ export default defineComponent({
   props: {
     name: { type: String, required: true },
     avatar: { type: String, required: true },
-    image: { type: String, required: true },
-    onRight: Boolean,
+    onright: Boolean,
   },
 })
 </script>
