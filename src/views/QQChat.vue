@@ -10,7 +10,7 @@ import ForwardChat from '@/components/QQChat/ForwardChat.vue'
 
 <template>
   <ChatWindow :title="title" :count="count">
-    <ChatToast toast="上午10:00" />
+    <ChatToast>上午10:00</ChatToast>
     <ChatMsg name="易姐是只咕鸽" avatar="http://q.qlogo.cn/headimg_dl?dst_uin=1440239038&spec=640">
       连x86都不支持
       <img src="../assets/imgs/andy-holmes-rCbdp8VCYhQ-unsplash.jpg" />
@@ -21,7 +21,7 @@ import ForwardChat from '@/components/QQChat/ForwardChat.vue'
       Nullam lacinia mi dui, quis pulvinar erat cursus quis. Nunc rutrum mauris sed faucibus maximus. Pellentesque
       congue lorem vel mattis semper.
     </ChatMsg>
-    <ChatToast toast="群菜狗撤回了一条消息" />
+    <ChatToast>群菜狗撤回了一条消息</ChatToast>
     <ChatMsg name="霖念" avatar="http://q.qlogo.cn/headimg_dl?dst_uin=2544704967&spec=640" on-right>淦我</ChatMsg>
     <ChatMsg name="易姐是只咕鸽" avatar="http://q.qlogo.cn/headimg_dl?dst_uin=1440239038&spec=640">
       <ChatQuote name="易姐是只咕鸽" time="下午9:54">连x86都不支持</ChatQuote>

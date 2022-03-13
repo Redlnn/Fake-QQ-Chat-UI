@@ -1,5 +1,5 @@
 <template>
-  <div class="chat-item chat-toast">{{ toast }}</div>
+  <div class="chat-item chat-toast"><slot></slot></div>
 </template>
 
 <script lang="ts">
@@ -7,9 +7,6 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'ChatToast',
-  props: {
-    toast: { type: String, required: true },
-  },
 })
 </script>
 
