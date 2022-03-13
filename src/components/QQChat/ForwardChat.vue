@@ -9,7 +9,7 @@
         <div class="forward-content">
           <div v-for="content in contents" :key="content">{{ content }}</div>
         </div>
-        <div class="forward-count">查看{{ contents.length }}条转发消息</div>
+        <div class="forward-count">查看{{ contents.length ? counts : counts }}条转发消息</div>
       </div>
     </div>
   </div>
@@ -25,6 +25,7 @@ export default defineComponent({
     avatar: { type: String, required: true },
     title: { type: String, required: true },
     contents: { type: Array, required: true },
+    counts: [Number, String],
     onright: Boolean,
   },
 })
