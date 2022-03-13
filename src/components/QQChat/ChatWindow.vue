@@ -1,12 +1,12 @@
 <template>
   <div class="qq-chat">
     <div class="qq-header">
-      <img :src="require('@/assets/svgs/back.svg')" class="header-bth" />
+      <img :src="require('@/assets/svgs/back.svg')" class="header-bth" @click="exitWindowFullScreen" />
       <span class="chat-title">
         <img :src="require('@/assets/svgs/ear.svg')" class="header-bth" />
         {{ title }}{{ count ? '(' + count + ')' : '' }}
       </span>
-      <img :src="require('@/assets/svgs/menu.svg')" class="header-bth" />
+      <img :src="require('@/assets/svgs/menu.svg')" class="header-bth" @click="setWindowFullScreen" />
     </div>
     <div class="chat-area">
       <slot></slot>
@@ -36,6 +36,17 @@ export default defineComponent({
   props: {
     title: { type: String, required: true },
     count: { type: [String, Number], default: '' },
+  },
+  methods: {
+    //启动全屏
+    setWindowFullScreen() {
+      document.documentElement.requestFullscreen()
+      screen.orientation.lock('portrait')
+    },
+    //退出全屏
+    exitWindowFullScreen() {
+      document.exitFullscreen()
+    },
   },
 })
 </script>
@@ -150,7 +161,7 @@ export default defineComponent({
   text-align: center;
   justify-content: space-between;
   align-items: center;
-  background-image: linear-gradient(to right, #00dafe, #01a7ff);
+  background-image: linear-gradient(to right, #00dafe, #00ceff 12%, #01c5ff 25%, #01b9ff 50%, #01a7ff 85%);
 }
 
 .header-bth {
