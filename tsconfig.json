@@ -3,6 +3,8 @@
     "target": "esnext",
     "module": "esnext",
     "strict": true,
+    "allowJs": false,
+    "checkJs": true,
     "jsx": "preserve",
     "moduleResolution": "node",
     "skipLibCheck": true,
