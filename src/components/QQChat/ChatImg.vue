@@ -13,7 +13,7 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'ChatMsg',
+  name: 'ChatImg',
   props: {
     name: { type: String, required: true },
     avatar: String,

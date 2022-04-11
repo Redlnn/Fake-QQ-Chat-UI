@@ -21,6 +21,8 @@ module.exports = {
     'no-undef': 'off',
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-var': 'error',
+    'no-useless-return': 'error',
     'vue/require-default-prop': 'off',
   },
 }

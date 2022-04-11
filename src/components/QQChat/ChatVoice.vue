@@ -15,7 +15,7 @@
           </svg>
           <audio ref="audio" :src="src" @ended="reset" @loadedmetadata="onLoadedmetadata"></audio>
           <span class="voice-bar">
-            <span v-for="item in getLineCount(duration)" :key="item" ref="voice-line" class="line"></span>
+            <span v-for="line in getLineCount(duration)" :key="line.id" ref="voice-line" class="line"></span>
           </span>
           {{ formatedDuration }}
         </div>
@@ -26,6 +26,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+
 export default defineComponent({
   name: 'ChatVoice',
   props: {
@@ -43,33 +44,33 @@ export default defineComponent({
   },
   methods: {
     getLineCount: function (num: number) {
-      var array = []
-      num = num / 2
-      if (num < 5) return [0, 1, 2, 3, 4]
+      let lineArray = []
+      num = num / 1.5
+      if (num < 5) return [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }]
       for (let i = 0; i <= num; i++) {
         if (i >= 25) {
           break
         }
-        array.push(1)
+        lineArray.push({ id: i })
       }
-      return array
+      return lineArray
     },
     reset: function () {
       this.playFlag = false
     },
     onLoadedmetadata: function () {
-      var audioElem = this.$refs.audio as HTMLAudioElement
+      const audioElem = this.$refs.audio as HTMLAudioElement
       this.duration = Math.round(audioElem.duration)
-      var m = Math.floor(audioElem.duration / 60)
-      var s = Math.round(audioElem.duration % 60)
+      const m = Math.floor(audioElem.duration / 60)
+      const s = Math.round(audioElem.duration % 60)
       this.formatedDuration = m > 0 ? `${m}'${s}"` : `${s}"`
     },
     sleep: (ms: number) => {
-      return new Promise(func => setTimeout(func, ms))
+      return new Promise(resolve => setTimeout(resolve, ms))
     },
     async playVoice() {
-      var audioElem = this.$refs.audio as HTMLAudioElement
-      var lines = this.$refs['voice-line'] as NodeListOf<HTMLElement>
+      const audioElem = this.$refs.audio as HTMLAudioElement
+      const lines = this.$refs['voice-line'] as NodeListOf<HTMLElement>
       if (this.playFlag) {
         audioElem.pause()
         audioElem.currentTime = 0
@@ -77,7 +78,6 @@ export default defineComponent({
           line.style.backgroundColor = '#000'
         })
         this.playFlag = false
-        return
       } else {
         audioElem.play()
         this.playFlag = true
