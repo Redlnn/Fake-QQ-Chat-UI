@@ -38,7 +38,7 @@ export default defineComponent({
   },
   mounted() {
     if (this.href) {
-      var file = this.$refs.file as HTMLAnchorElement
+      const file = this.$refs.file as HTMLAnchorElement
       file.href = this.href
     }
   },

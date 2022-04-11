@@ -44,7 +44,7 @@ export default defineComponent({
   },
   methods: {
     getLineCount: function (num: number) {
-      let lineArray = []
+      const lineArray = []
       num = num / 1.5
       if (num < 5) return [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }]
       for (let i = 0; i <= num; i++) {
@@ -66,7 +66,7 @@ export default defineComponent({
       this.formatedDuration = m > 0 ? `${m}'${s}"` : `${s}"`
     },
     sleep: (ms: number) => {
-      return new Promise(resolve => setTimeout(resolve, ms))
+      return new Promise((resolve) => setTimeout(resolve, ms))
     },
     async playVoice() {
       const audioElem = this.$refs.audio as HTMLAudioElement
@@ -74,14 +74,14 @@ export default defineComponent({
       if (this.playFlag) {
         audioElem.pause()
         audioElem.currentTime = 0
-        lines.forEach(line => {
+        lines.forEach((line) => {
           line.style.backgroundColor = '#000'
         })
         this.playFlag = false
       } else {
         audioElem.play()
         this.playFlag = true
-        lines.forEach(line => {
+        lines.forEach((line) => {
           line.style.backgroundColor = '#dddddd'
         })
         for (let index = 0; index < lines.length; index++) {
