@@ -130,16 +130,16 @@ export default defineComponent({
   border-radius: 15px;
   overflow-wrap: break-word;
   background-color: white;
-}
 
-.bubble > img {
-  display: block;
-  width: 30vw;
-  min-width: 200px;
-  max-width: 300px;
-  max-height: 350px;
-  margin: 5px 0;
-  border-radius: 10px;
+  & > img {
+    display: block;
+    width: 30vw;
+    min-width: 200px;
+    max-width: 300px;
+    max-height: 350px;
+    margin: 5px 0;
+    border-radius: 10px;
+  }
 }
 </style>
 
