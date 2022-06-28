@@ -7,6 +7,10 @@ import ChatToast from '@/components/QQChat/ChatToast.vue'
 import ChatVoice from '@/components/QQChat/ChatVoice.vue'
 import ChatWindow from '@/components/QQChat/ChatWindow.vue'
 import ForwardChat from '@/components/QQChat/ForwardChat.vue'
+
+const click = () => {
+  window.open('https://www.bilibili.com/video/BV1GJ411x7h7', '_blank')
+}
 </script>
 
 <template>
@@ -62,7 +66,7 @@ import ForwardChat from '@/components/QQChat/ForwardChat.vue'
       filename="secret.zip"
       filesize="6.33MB"
       :fileicon="require('@/assets/logo.png')"
-      onclick="window.open('https:\/\/www.bilibili.com/video/BV1GJ411x7h7', '_blank')"
+      :click="click"
     />
   </ChatWindow>
 </template>
@@ -74,8 +78,8 @@ export default defineComponent({
   props: {},
   data() {
     return {
-      title: this.$route.query.title,
-      count: this.$route.query.count,
+      title: this.$route.query.title?.toString() || 'Unknown',
+      count: this.$route.query.count?.toString(),
     }
   },
 })

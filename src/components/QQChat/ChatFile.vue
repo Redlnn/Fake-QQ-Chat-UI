@@ -2,7 +2,7 @@
   <div class="chat-item" :class="[onright ? 'right-chat' : 'left-chat']">
     <div v-if="avatar" :style="{ 'background-image': `url(${avatar})` }" class="chat-avatar"></div>
     <div v-else class="chat-avatar chat-avatar-text">{{ name[0] }}</div>
-    <div class="chat-content">
+    <div class="chat-content" :onclick="click">
       <div class="chat-name">{{ name }}</div>
       <a ref="file" target="_blank" style="text-decoration: none; color: #000">
         <div class="bubble" style="cursor: pointer">
@@ -35,6 +35,7 @@ export default defineComponent({
     fileicon: { type: String, required: true },
     href: { type: String, default: '' },
     onright: Boolean,
+    click: { type: Function, default: function () {} }, // eslint-disable-line
   },
   mounted() {
     if (this.href) {
