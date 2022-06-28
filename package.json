@@ -8,30 +8,31 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "core-js": "^3.21.1",
+    "core-js": "^3.23.3",
     "register-service-worker": "^1.7.2",
-    "vue": "^3.2.31",
-    "vue-router": "^4.0.14"
+    "vue": "^3.2.37",
+    "vue-router": "^4.0.16"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.14.0",
-    "@typescript-eslint/parser": "^5.14.0",
-    "@vue/cli-plugin-babel": "~5.0.1",
-    "@vue/cli-plugin-eslint": "~5.0.1",
-    "@vue/cli-plugin-pwa": "~5.0.1",
-    "@vue/cli-plugin-router": "~5.0.1",
-    "@vue/cli-plugin-typescript": "~5.0.1",
-    "@vue/cli-service": "~5.0.1",
-    "@vue/eslint-config-typescript": "^9.1.0",
-    "eslint": "^7.32.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-vue": "^8.5.0",
-    "lint-staged": "^11.2.6",
-    "prettier": "^2.5.1",
-    "sass": "^1.49.9",
+    "@types/node": "^18.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.30.0",
+    "@typescript-eslint/parser": "^5.30.0",
+    "@vue/cli-plugin-babel": "^5.0.6",
+    "@vue/cli-plugin-eslint": "^5.0.6",
+    "@vue/cli-plugin-pwa": "^5.0.6",
+    "@vue/cli-plugin-router": "^5.0.6",
+    "@vue/cli-plugin-typescript": "^5.0.6",
+    "@vue/cli-service": "^5.0.6",
+    "@vue/eslint-config-typescript": ">=11.0.0",
+    "eslint": ">=8.18.0",
+    "eslint-config-prettier": ">=8.5.0",
+    "eslint-plugin-prettier": ">=4.1.0",
+    "eslint-plugin-vue": ">=9.1.1",
+    "lint-staged": ">=13.0.3",
+    "prettier": ">=2.7.1",
+    "sass": "^1.53.0",
     "sass-loader": "^12.6.0",
-    "typescript": "~4.5.5"
+    "typescript": "^4.7.4"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
