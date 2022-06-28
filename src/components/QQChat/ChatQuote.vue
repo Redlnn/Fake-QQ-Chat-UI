@@ -22,7 +22,7 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .chat-quote {
-  background-color: #eee;
+  background-color: #ebecee;
   padding: 10px;
   margin-bottom: 5px;
   border-radius: 10px;

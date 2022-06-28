@@ -140,6 +140,15 @@ export default defineComponent({
     margin: 5px 0;
     border-radius: 10px;
   }
+
+  .right-chat & {
+    background-color: #0098fe;
+    color: #fff;
+
+    .bubble-arrow {
+      border-top-color: #0098fe;
+    }
+  }
 }
 </style>
 
@@ -151,7 +160,7 @@ export default defineComponent({
   flex-direction: column;
   justify-content: space-between;
   align-content: space-between;
-  background-color: #e9ecf4;
+  background-color: #f0f0f0;
 }
 
 .qq-header {
@@ -162,6 +171,10 @@ export default defineComponent({
   justify-content: space-between;
   align-items: center;
   background-image: linear-gradient(to right, #00dafe, #00ceff 12%, #01c5ff 25%, #01b9ff 50%, #01a7ff 85%);
+}
+
+.qq-footer {
+  background-color: #f5f4f2;
 }
 
 .header-bth {
@@ -222,11 +235,11 @@ export default defineComponent({
   line-height: 29px;
   border: none;
   border-radius: 15px;
-  background-color: #b1effe;
+  background-color: #75c3f4;
 }
 
 .qq-send-btn:hover {
-  background-color: #01cafc;
+  background-color: #0098fe;
 }
 
 .func-bth {
