@@ -148,6 +148,10 @@ export default defineComponent({
     .bubble-arrow {
       border-top-color: #0098fe;
     }
+
+    .chat-quote {
+      background-color: #1fa4ff;
+    }
   }
 }
 </style>

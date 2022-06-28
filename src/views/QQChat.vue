@@ -60,7 +60,14 @@ const click = () => {
       ]"
       counts="4"
     />
-    <ChatMsg name="GraiaX" onright>来一打紧身衣涩图</ChatMsg>
+    <ChatMsg name="GraiaX" onright>
+      <ChatQuote name="易姐是只咕鸽">
+        连x86都不支持
+        <img src="../assets/imgs/andy-holmes-rCbdp8VCYhQ-unsplash.jpg" />
+      </ChatQuote>
+      Just A Test
+    </ChatMsg>
+    <ChatMsg name="GraiaX" onright> 来一打紧身衣涩图 </ChatMsg>
     <ChatFile
       name="EroEroBot"
       filename="secret.zip"
