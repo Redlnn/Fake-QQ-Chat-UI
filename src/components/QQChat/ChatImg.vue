@@ -4,7 +4,7 @@
     <div v-else class="chat-avatar chat-avatar-text">{{ name[0] }}</div>
     <div class="chat-content">
       <div class="chat-name">{{ name }}</div>
-      <img :src="src" />
+      <img :src="src" :style="{ 'max-width': maxWidth }" />
     </div>
   </div>
 </template>
@@ -19,6 +19,7 @@ export default defineComponent({
     avatar: String,
     src: { type: String, required: true },
     onright: Boolean,
+    maxWidth: { type: String, default: '250px' },
   },
 })
 </script>
@@ -26,7 +27,7 @@ export default defineComponent({
 <style scoped lang="scss">
 .chat-content:deep() > img {
   width: 30vw;
-  min-width: 250px;
+  min-width: 100px;
   max-height: 400px;
   border-radius: 15px;
 }

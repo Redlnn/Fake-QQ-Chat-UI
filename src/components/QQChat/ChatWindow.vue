@@ -132,12 +132,8 @@ export default defineComponent({
   background-color: white;
 
   & > img {
-    display: block;
-    width: 30vw;
-    min-width: 200px;
     max-width: 300px;
     max-height: 350px;
-    margin: 5px 0;
     border-radius: 10px;
   }
 
@@ -197,7 +193,7 @@ export default defineComponent({
 }
 
 .chat-area {
-  width: 100%;
+  flex: 1;
   overflow: overlay;
 }
 
