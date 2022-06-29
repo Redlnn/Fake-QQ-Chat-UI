@@ -15,61 +15,61 @@ const click = () => {
 
 <template>
   <ChatWindow :title="title" :count="count">
-    <ChatToast>上午10:00</ChatToast>
-    <ChatMsg name="易姐是只咕鸽" avatar="http://q.qlogo.cn/headimg_dl?dst_uin=1440239038&spec=640">
-      连x86都不支持
-      <img src="../assets/imgs/andy-holmes-rCbdp8VCYhQ-unsplash.jpg" />
-    </ChatMsg>
-    <ChatMsg name="群菜鸡" avatar="http://q.qlogo.cn/headimg_dl?dst_uin=1450069615&spec=640">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus fermentum, velit ut dapibus aliquet, felis elit
-      laoreet augue, sit amet tristique nulla turpis ut nunc. Phasellus mattis fermentum lectus ultricies efficitur.
-      Nullam lacinia mi dui, quis pulvinar erat cursus quis. Nunc rutrum mauris sed faucibus maximus. Pellentesque
-      congue lorem vel mattis semper.
-    </ChatMsg>
-    <ChatToast>群菜狗撤回了一条消息</ChatToast>
-    <ChatMsg name="霖念" avatar="http://q.qlogo.cn/headimg_dl?dst_uin=2544704967&spec=640" on-right>淦我</ChatMsg>
-    <ChatMsg name="易姐是只咕鸽" avatar="http://q.qlogo.cn/headimg_dl?dst_uin=1440239038&spec=640">
-      <ChatQuote name="易姐是只咕鸽" time="下午9:54">连x86都不支持</ChatQuote>
-      高中考试这么多年的大样本重复试验
-    </ChatMsg>
-    <ChatMsg name="霖念" avatar="http://q.qlogo.cn/headimg_dl?dst_uin=2544704967&spec=640" on-right>
-      <ChatQuote name="易姐是只咕鸽">
-        连x86都不支持
-        <img src="../assets/imgs/andy-holmes-rCbdp8VCYhQ-unsplash.jpg" />
-      </ChatQuote>
-      高中考试这么多年的大样本重复试验
+    <ChatToast>2022/5/17 星期二 上午 10:58:39</ChatToast>
+    <ForwardChat
+      name="Evyde HF"
+      avatar="http://q.qlogo.cn/headimg_dl?dst_uin=907247545&spec=100"
+      title="转发"
+      :contents="['LIAN-小明: [图片]', 'LIAN-小明: 隔壁群的机器人已经可以识别本子了', 'LIAN-小明: [图片]']"
+      counts="10"
+    />
+    <ChatToast>2022/5/17 星期二 上午 11:28:06</ChatToast>
+    <ChatMsg name="某痕" avatar="http://q.qlogo.cn/headimg_dl?dst_uin=1365197927&spec=100">
+      <ChatQuote name="Evyde HF" time="2022/5/17 星期二 上午 10:58:39">[聊天记录]</ChatQuote>
+      这个是<br />
+      我的真寻<br />
+      本来是用的sagiri
     </ChatMsg>
     <ChatImg
-      name="群菜鸮"
-      avatar="http://q.qlogo.cn/headimg_dl?dst_uin=2948531755&spec=640"
-      :src="require('@/assets/imgs/andy-holmes-rCbdp8VCYhQ-unsplash.jpg')"
+      name="某痕"
+      avatar="http://q.qlogo.cn/headimg_dl?dst_uin=1365197927&spec=100"
+      :src="require('@/assets/imgs/biaoqing1.jpg')"
+      max-width="150px"
     />
+    <ChatToast>某痕 撤回了一条消息</ChatToast>
+    <ChatMsg name="某痕" avatar="http://q.qlogo.cn/headimg_dl?dst_uin=907247545&spec=100">
+      <ChatQuote name="某痕" time="2022/5/17 星期二 上午 11:28:14">
+        <img :src="require('@/assets/imgs/biaoqing1.jpg')" />
+      </ChatQuote>
+      对不起了sagiri，我真的很需要本子机器人
+      <img
+        :src="require('@/assets/imgs/biaoqing2.png')"
+        style="height: 1.3em; width: 1.3em; vertical-align: text-bottom"
+      />
+      <img
+        :src="require('@/assets/imgs/biaoqing2.png')"
+        style="height: 1.3em; width: 1.3em; vertical-align: text-bottom"
+      />
+      <img
+        :src="require('@/assets/imgs/biaoqing2.png')"
+        style="height: 1.3em; width: 1.3em; vertical-align: text-bottom"
+      />
+    </ChatMsg>
+    <ChatMsg name="Test" onright>
+      来一打本子
+      <img
+        :src="require('@/assets/imgs/biaoqing2.png')"
+        style="height: 1.3em; width: 1.3em; vertical-align: text-bottom"
+      />
+    </ChatMsg>
     <ChatVoice
-      name="群菜鸡"
-      avatar="http://q.qlogo.cn/headimg_dl?dst_uin=1450069615&spec=640"
+      name="Sagiri"
+      avatar="http://q.qlogo.cn/headimg_dl?dst_uin=762802224&spec=100"
       :src="require('@/assets/11_欧尼酱快起床.mp3')"
     />
-    <ForwardChat
-      name="群菜鸡"
-      avatar="http://q.qlogo.cn/headimg_dl?dst_uin=1450069615&spec=640"
-      title="群聊"
-      :contents="[
-        '群菜狗: [图片]喵喵喵喵喵？？？？？',
-        '群菜喵: 高中考试这么多年的大样本重复试验，已经总结出了套路，能够保证区分度的同时，还能控制好试题难度。',
-        '群菜鸡: 喵？',
-      ]"
-      counts="4"
-    />
-    <ChatMsg name="GraiaX" onright>
-      <ChatQuote name="易姐是只咕鸽">
-        连x86都不支持
-        <img src="../assets/imgs/andy-holmes-rCbdp8VCYhQ-unsplash.jpg" />
-      </ChatQuote>
-      Just A Test
-    </ChatMsg>
-    <ChatMsg name="GraiaX" onright> 来一打紧身衣涩图 </ChatMsg>
     <ChatFile
-      name="EroEroBot"
+      name="Sagiri"
+      avatar="http://q.qlogo.cn/headimg_dl?dst_uin=762802224&spec=100"
       filename="secret.zip"
       filesize="6.33MB"
       :fileicon="require('@/assets/logo.png')"
