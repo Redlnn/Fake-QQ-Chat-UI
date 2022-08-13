@@ -98,11 +98,15 @@ export default defineComponent({
 }
 
 .chat-avatar-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  line-height: 42px;
+  width: 100%;
+  height: 100%;
   font-size: 24px;
   font-weight: bold;
-  background: #fff;
+  background: transparent;
 }
 
 .bubble-arrow {
@@ -135,6 +139,7 @@ export default defineComponent({
     max-width: 300px;
     max-height: 350px;
     border-radius: 10px;
+    // margin: 5px 0; // 如果单独一行得单独加这个，同一行有文字的话对齐文字也可以
   }
 
   .right-chat & {
