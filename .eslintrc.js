@@ -6,8 +6,11 @@ module.exports = {
     es2021: true,
   },
 
+  plugins: ['prettier', 'vue'],
+
   extends: [
     'eslint:recommended',
+    'eslint-config-prettier',
     '@vue/typescript/recommended',
     'plugin:vue/vue3-recommended',
     'plugin:prettier/recommended',
@@ -26,6 +29,7 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-var': 'error',
     'no-useless-return': 'error',
+    'prettier/prettier': 'warn',
     'vue/require-default-prop': 'off',
   },
 }

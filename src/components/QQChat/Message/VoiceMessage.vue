@@ -1,12 +1,14 @@
 <template>
-  <div class="chat-item" :class="[onright ? 'right-chat' : 'left-chat']">
-    <div v-if="avatar" :style="{ 'background-image': `url(${avatar})` }" class="chat-avatar"></div>
-    <div v-else class="chat-avatar"><span class="chat-avatar-text">{{ name[0] }}</span></div>
-    <div class="chat-content">
-      <div class="chat-name">{{ name }}</div>
-      <div class="bubble" :onclick="playVoice" style="cursor: pointer">
-        <div class="bubble-arrow"></div>
-        <div class="chat-audio">
+  <div class="fakeqq-message" :class="[onright ? 'right-chat' : 'left-chat']">
+    <div v-if="avatar" :style="{ 'background-image': `url(${avatar})` }" class="fakeqq-message__avatar"></div>
+    <div v-else class="fakeqq-message__avatar">
+      <span class="fakeqq-message__text-avatar">{{ name[0] }}</span>
+    </div>
+    <div class="fakeqq-message__content">
+      <div class="fakeqq-message__name">{{ name }}</div>
+      <div class="fakeqq-message__bubble" :onclick="playVoice" style="cursor: pointer">
+        <div class="fakeqq-message__bubble-arrow"></div>
+        <div class="fakeqq-voice">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
             <circle cx="26" cy="26" r="26" />
             <path
@@ -14,7 +16,7 @@
             />
           </svg>
           <audio ref="audio" :src="src" @ended="reset" @loadedmetadata="onLoadedmetadata"></audio>
-          <span class="voice-bar">
+          <span class="fakeqq-voice__bar">
             <span v-for="line in getLineCount(duration)" :key="line.id" ref="voice-line" class="line"></span>
           </span>
           {{ formatedDuration }}
@@ -28,7 +30,7 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'ChatVoice',
+  name: 'VoiceMessage',
   props: {
     name: { type: String, required: true },
     avatar: String,
@@ -95,71 +97,3 @@ export default defineComponent({
   },
 })
 </script>
-
-<style scoped lang="scss">
-.chat-audio {
-  display: flex;
-  align-items: center;
-}
-
-.chat-audio svg {
-  height: 1em;
-  width: 1em;
-}
-
-.chat-audio svg circle {
-  fill: #000;
-}
-
-.chat-audio svg path {
-  fill: #fff;
-}
-
-.voice-bar {
-  display: inline-flex;
-  height: 1em;
-  margin-left: 5px;
-  margin-right: 5px;
-  align-items: center;
-}
-
-.voice-bar .line {
-  width: 3px;
-  height: 100%;
-  margin: 0 1px;
-  border-radius: 2px;
-  background-color: #000;
-}
-
-.voice-bar .line:nth-child(1n) {
-  height: 73%;
-}
-
-.voice-bar .line:nth-child(2n) {
-  height: 78%;
-}
-
-.voice-bar .line:nth-child(3n) {
-  height: 84%;
-}
-
-.voice-bar .line:nth-child(4n) {
-  height: 66%;
-}
-
-.voice-bar .line:nth-child(5n) {
-  height: 58%;
-}
-
-.voice-bar .line:nth-child(6n) {
-  height: 75%;
-}
-
-.voice-bar .line:nth-child(7n) {
-  height: 95%;
-}
-
-.voice-bar .line:nth-child(8n) {
-  height: 100%;
-}
-</style>
