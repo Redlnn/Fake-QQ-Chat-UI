@@ -1,0 +1,71 @@
+.sticker-wrapper[data-v-3173bb26] {
+  width: 100%;
+  z-index: var(--z-index-base);
+}
+.sticker-bar[data-v-3173bb26] {
+  align-items: center;
+  -webkit-backdrop-filter: blur(50px);
+  backdrop-filter: blur(50px);
+  background: var(--blur_middle_standard);
+  background-clip: padding-box;
+  border: var(--border_secondary);
+  border-radius: 8px;
+  box-shadow: var(--shadow_bg_middle_secondary);
+  display: flex;
+  flex-direction: row;
+  height: 90px;
+  mix-blend-mode: normal;
+  overflow: hidden;
+  width: -moz-min-content;
+  width: min-content;
+}
+.sticker-bar-item[data-v-3173bb26] {
+  align-items: center;
+  height: 58px;
+  justify-content: center;
+  margin-left: 7px;
+  margin-right: 7px;
+  width: 58px;
+}
+.sticker-bar-item.selected .image[data-v-3173bb26] {
+  border: 1px solid var(--brand_standard);
+}
+.sticker-bar-item-img[data-v-3173bb26] {
+  height: 58px;
+  width: 58px;
+}
+.sticker-bar-item-img[data-v-3173bb26]:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transform-origin: center center;
+}
+.sticker-bar-arrow[data-v-3173bb26] {
+  align-items: center;
+  border-radius: 6px;
+  color: var(--icon_primary);
+  cursor: pointer;
+  display: flex;
+  flex-shrink: 0;
+  height: 28px;
+  justify-content: center;
+  width: 28px;
+}
+.sticker-bar-arrow[data-v-3173bb26]:hover {
+  background-color: var(--overlay_hover);
+}
+.sticker-bar-arrow[data-v-3173bb26]:active {
+  background-color: var(--overlay_pressed);
+}
+.sticker-bar-arrow-next[data-v-3173bb26] {
+  margin-left: -5px;
+  margin-right: 2px;
+}
+.sticker-bar-arrow-back[data-v-3173bb26] {
+  margin-left: 2px;
+  margin-right: -5px;
+}
+.flex-center[data-v-3173bb26] {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}

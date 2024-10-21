@@ -1,0 +1,50 @@
+.item-dragging-over[data-v-088220d6] * {
+  pointer-events: none;
+}
+.bg-color-blue[data-v-088220d6] {
+  background-color: var(--nt_overlay_active_brand_2_40_2_alpha);
+}
+.bg-color-gray[data-v-088220d6] {
+  background-color: var(--overlay_pressed_brand);
+}
+.send-mask[data-v-088220d6] {
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: var(--z-index-overlay);
+}
+.send-mask .section[data-v-088220d6] {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+.send-mask .list[data-v-088220d6] {
+  height: calc(100% - var(--inputAreaHeight));
+}
+.send-mask .input[data-v-088220d6] {
+  height: var(--inputAreaHeight);
+}
+.send-mask .primary[data-v-088220d6] {
+  color: var(--text_white);
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+.send-mask .secondary[data-v-088220d6] {
+  color: var(--text_white);
+  font-size: 12px;
+}
+.send-mask .send-file-mask-icon[data-v-088220d6] {
+  color: var(--icon_white);
+  margin-bottom: 8px;
+}
+.flex-center[data-v-088220d6] {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}

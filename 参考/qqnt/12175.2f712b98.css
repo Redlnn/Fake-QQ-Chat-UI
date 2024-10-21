@@ -1,0 +1,40 @@
+.password-luckymoney-tip-mask[data-v-e0b479ea] {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: var(--z-index-base);
+}
+.password-luckymoney-tip[data-v-e0b479ea] {
+  background-clip: padding-box;
+  background-color: var(--background_dialogue);
+  border: var(--border_secondary);
+  border-radius: 4px;
+  bottom: 10px;
+  box-shadow: var(--shadow_bg_top);
+  display: flex;
+  flex-direction: column;
+  height: 44px;
+  justify-content: space-around;
+  left: 10px;
+  padding: 4px 6px;
+  position: absolute;
+  z-index: var(--z-index-base-2);
+}
+.password-luckymoney-tip .input-tip[data-v-e0b479ea] {
+  line-height: 16px;
+}
+.password-luckymoney-tip .input-tip span[data-v-e0b479ea] {
+  color: var(--text-primary);
+  font-size: 12px;
+}
+.password-luckymoney-tip .password-tip span[data-v-e0b479ea] {
+  color: #ff4d4d;
+  font-size: 12px;
+}
+.flex-center[data-v-e0b479ea] {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}

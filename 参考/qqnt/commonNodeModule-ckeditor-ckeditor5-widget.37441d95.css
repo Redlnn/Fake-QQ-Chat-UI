@@ -1,0 +1,146 @@
+.ck .ck-widget {
+  & .ck-widget__type-around__button {
+    display: block;
+    overflow: hidden;
+    position: absolute;
+    z-index: var(--ck-z-default);
+    & svg {
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      z-index: calc(var(--ck-z-default) + 2);
+    }
+    &.ck-widget__type-around__button_before {
+      left: min(10%, 30px);
+      top: calc(var(--ck-widget-outline-thickness) * -0.5);
+      transform: translateY(-50%);
+    }
+    &.ck-widget__type-around__button_after {
+      bottom: calc(var(--ck-widget-outline-thickness) * -0.5);
+      right: min(10%, 30px);
+      transform: translateY(50%);
+    }
+  }
+  &.ck-widget_selected > .ck-widget__type-around > .ck-widget__type-around__button,
+  & > .ck-widget__type-around > .ck-widget__type-around__button:hover {
+    &:after {
+      content: '';
+      display: block;
+      left: 1px;
+      position: absolute;
+      top: 1px;
+      z-index: calc(var(--ck-z-default) + 1);
+    }
+  }
+  & > .ck-widget__type-around > .ck-widget__type-around__fake-caret {
+    display: none;
+    left: 0;
+    position: absolute;
+    right: 0;
+  }
+  &:hover > .ck-widget__type-around > .ck-widget__type-around__fake-caret {
+    left: calc(var(--ck-widget-outline-thickness) * -1);
+    right: calc(var(--ck-widget-outline-thickness) * -1);
+  }
+  &.ck-widget_type-around_show-fake-caret_before > .ck-widget__type-around > .ck-widget__type-around__fake-caret {
+    display: block;
+    top: calc(var(--ck-widget-outline-thickness) * -1 - 1px);
+  }
+  &.ck-widget_type-around_show-fake-caret_after > .ck-widget__type-around > .ck-widget__type-around__fake-caret {
+    bottom: calc(var(--ck-widget-outline-thickness) * -1 - 1px);
+    display: block;
+  }
+}
+.ck.ck-editor__editable.ck-read-only .ck-widget__type-around,
+.ck.ck-editor__editable.ck-restricted-editing_mode_restricted .ck-widget__type-around,
+.ck.ck-editor__editable.ck-widget__type-around_disabled .ck-widget__type-around {
+  display: none;
+}
+:root {
+  --ck-color-resizer: var(--ck-color-focus-border);
+  --ck-color-resizer-tooltip-background: #262626;
+  --ck-color-resizer-tooltip-text: #f2f2f2;
+  --ck-resizer-border-radius: var(--ck-border-radius);
+  --ck-resizer-tooltip-offset: 10px;
+  --ck-resizer-tooltip-height: calc(var(--ck-spacing-small) * 2 + 10px);
+}
+.ck .ck-widget,
+.ck .ck-widget.ck-widget_with-selection-handle {
+  position: relative;
+  & .ck-widget__selection-handle {
+    position: absolute;
+    & .ck-icon {
+      display: block;
+    }
+  }
+  &.ck-widget_selected > .ck-widget__selection-handle,
+  &:hover > .ck-widget__selection-handle {
+    visibility: visible;
+  }
+}
+.ck .ck-size-view {
+  background: var(--ck-color-resizer-tooltip-background);
+  border: 1px solid var(--ck-color-resizer-tooltip-text);
+  border-radius: var(--ck-resizer-border-radius);
+  color: var(--ck-color-resizer-tooltip-text);
+  display: block;
+  font-size: var(--ck-font-size-tiny);
+  height: var(--ck-resizer-tooltip-height);
+  line-height: var(--ck-resizer-tooltip-height);
+  padding: 0 var(--ck-spacing-small);
+  &.ck-orientation-above-center,
+  &.ck-orientation-bottom-left,
+  &.ck-orientation-bottom-right,
+  &.ck-orientation-top-left,
+  &.ck-orientation-top-right {
+    position: absolute;
+  }
+  &.ck-orientation-top-left {
+    left: var(--ck-resizer-tooltip-offset);
+    top: var(--ck-resizer-tooltip-offset);
+  }
+  &.ck-orientation-top-right {
+    right: var(--ck-resizer-tooltip-offset);
+    top: var(--ck-resizer-tooltip-offset);
+  }
+  &.ck-orientation-bottom-right {
+    bottom: var(--ck-resizer-tooltip-offset);
+    right: var(--ck-resizer-tooltip-offset);
+  }
+  &.ck-orientation-bottom-left {
+    bottom: var(--ck-resizer-tooltip-offset);
+    left: var(--ck-resizer-tooltip-offset);
+  }
+  &.ck-orientation-above-center {
+    left: 50%;
+    top: calc(var(--ck-resizer-tooltip-height) * -1);
+    transform: translate(-50%);
+  }
+}
+.ck .ck-widget_with-resizer {
+  position: relative;
+}
+.ck .ck-widget__resizer {
+  display: none;
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+}
+.ck-focused .ck-widget_with-resizer.ck-widget_selected {
+  & > .ck-widget__resizer {
+    display: block;
+  }
+}
+.ck .ck-widget__resizer__handle {
+  pointer-events: all;
+  position: absolute;
+  &.ck-widget__resizer__handle-bottom-right,
+  &.ck-widget__resizer__handle-top-left {
+    cursor: nwse-resize;
+  }
+  &.ck-widget__resizer__handle-bottom-left,
+  &.ck-widget__resizer__handle-top-right {
+    cursor: nesw-resize;
+  }
+}

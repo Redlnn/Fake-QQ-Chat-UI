@@ -1,0 +1,19 @@
+.import_message-tip[data-v-1097e8c0] {
+  align-items: center;
+  background: rgba(0, 153, 255, 0.1);
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+  width: 100%;
+}
+.import_message-tip .q-gray-tip[data-v-1097e8c0] {
+  margin-left: 8px;
+}
+.import_message-tip .cancel[data-v-1097e8c0] {
+  margin-left: 10px;
+}
+.flex-center[data-v-1097e8c0] {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}

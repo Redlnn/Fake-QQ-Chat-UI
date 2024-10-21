@@ -1,0 +1,65 @@
+.q-progress[data-v-220e47dd] {
+  position: relative;
+}
+.q-progress > .process-icon[data-v-220e47dd] {
+  height: 20px;
+  position: absolute;
+  transform: scale(0.5);
+  transform-origin: center;
+  width: 20px;
+}
+.flex-center[data-v-220e47dd] {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.full-update__downloading .download-progress .progress-bar[data-v-00a49c22],
+.full-update__downloading .download-progress .progress-text[data-v-00a49c22] {
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+  width: 100%;
+}
+.full-update__content .auto-selected[data-v-00a49c22] {
+  -webkit-app-region: no-drag;
+  color: var(--text_secondary);
+  margin-top: 12px;
+}
+.full-update__content .update-tips[data-v-00a49c22] {
+  font-weight: var(--font-bold);
+  margin-bottom: 8px;
+}
+.prepare-resources[data-v-00a49c22] {
+  display: inline-block;
+  margin-right: 8px;
+}
+.flex-center[data-v-00a49c22] {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.update-dialog .q-dialog-content {
+  width: 100%;
+}
+.update-dialog .q-dialog-content .update-markdown {
+  max-height: 30vh;
+  padding-right: 6px;
+}
+.update-dialog .q-dialog-content p {
+  line-height: 24px;
+}
+.update-dialog .q-dialog-footer {
+  padding-top: 0;
+}
+.force-update-dialog .q-dialog-header {
+  display: none;
+}
+.force-update-dialog .q-dialog-body {
+  align-items: unset;
+  padding-top: 20px;
+}
+.flex-center {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}

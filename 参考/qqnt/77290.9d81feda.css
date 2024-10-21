@@ -1,0 +1,15 @@
+.q-announcement-dialog .q-dialog-content {
+  width: 100%;
+}
+.q-announcement-dialog .q-dialog-content .announcement-markdown {
+  max-height: 30vh;
+  overflow-y: scroll;
+}
+.q-announcement-dialog .q-dialog-content p {
+  line-height: 24px;
+}
+.flex-center {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}

@@ -1,0 +1,112 @@
+.draggable-view {
+  -webkit-app-region: drag !important;
+  position: fixed;
+  z-index: var(--z-index-min);
+}
+.empty-panel {
+  height: 100%;
+  justify-content: center;
+  position: relative;
+}
+.empty-panel_head {
+  height: 58px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: var(--z-index-base-2);
+}
+.empty-panel--noTitle .q-empty-page-img {
+  -webkit-user-drag: none;
+  margin-bottom: 0;
+}
+.ad-wrapper {
+  align-items: center;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.toggle-btn[data-v-76c695d4] {
+  background: var(--fg_grey_standard);
+  border: none;
+  border-radius: 50px;
+  bottom: 26px;
+  color: var(--text_white);
+  outline: none;
+  padding: 5px 8px;
+  position: fixed;
+  right: 26px;
+}
+.toggle-btn[data-v-76c695d4]:hover {
+  background: var(--overlay_hover);
+}
+.toggle-btn[data-v-76c695d4]:active {
+  background: var(--overlay_pressed);
+}
+.fade-enter-active[data-v-76c695d4],
+.fade-leave-active[data-v-76c695d4] {
+  transition: all 0.25s ease;
+}
+.fade-enter-from[data-v-76c695d4],
+.fade-leave-to[data-v-76c695d4] {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+.flex-center[data-v-76c695d4] {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.empty-aio {
+  flex: 1 1 0%;
+  overflow: hidden;
+}
+.empty-aio .q-empty-page-img {
+  -webkit-user-drag: none;
+}
+.flex-center {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.two-col-layout[data-v-7a63d3f0] {
+  display: flex;
+  max-width: 100%;
+  width: 100%;
+}
+.two-col-layout .two-col-layout__aside[data-v-7a63d3f0] {
+  flex: 1;
+  flex-basis: 100% !important;
+  flex-grow: 0;
+  flex-shrink: 1;
+  max-width: min(var(--max-width-aside), var(--drag-width-aside));
+  min-width: var(--min-width-aside);
+  position: relative;
+}
+.two-col-layout .two-col-layout__main[data-v-7a63d3f0] {
+  flex: 1;
+  flex-shrink: 9999;
+  min-width: var(--min-width-main);
+}
+.flex-center[data-v-7a63d3f0] {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.message-panel[data-v-6577e154] {
+  display: flex;
+  height: 100%;
+  position: relative;
+}
+.miracle-background.hide-texture[data-v-6577e154] {
+  --bg-texture-left: 100%;
+}
+.flex-center[data-v-6577e154] {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}

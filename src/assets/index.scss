@@ -1,0 +1,113 @@
+:root {
+  --font-bold: 400;
+  --font_size_1: 10px;
+  --font_size_2: 12px;
+  --font_size_3: 14px;
+  --font_size_4: 16px;
+  --font_size_5: 18px;
+  --avatar_size_1: 20px;
+  --avatar_size_2: 32px;
+  --avatar_size_3: 40px;
+  --font_size_main_1: 12px;
+  --font_size_main_2: 14px;
+  --line_height_1: 14px;
+  --line_height_2: 16px;
+  --line_height_3: 20px;
+  --line_height_4: 22px;
+  --line_height_5: 24px;
+  --line_height_main_1: 18px;
+  --line_height_main_2: 22px;
+}
+
+:root {
+  --background-03: #f5f5f5;
+  --border_standard: #0000000a;
+  --bubble_guest: #ffffffff;
+  --bubble_guest_text: #000000ff;
+  --fill_light_primary: #ffffffff;
+  --host_bubble_bg_css_value: #0099ff;
+  --icon_tertiary: #0000004d;
+  --on_bg_text: #999999ff;
+  --on_brand_primary: #ffffffff;
+  --on_bubble_host_text: #ffffffff;
+  --overlay_hover: #0000000a;
+  --overlay_hover_brand: #00000014;
+  --text-secondary-01: #999;
+  --text-white: #fff;
+  --text_link: #2d77e5ff;
+  --text_primary: #000000ff;
+  --text_primary_light: #00000099;
+  --icon_primary: #000000ff;
+}
+
+:root {
+  --nt_blur_bottom_superlight_2_30_2_alpha: rgba(255, 255, 255, 0.3);
+}
+
+:root {
+  --tag_red_bg: #ff3f3233;
+  --tag_red_text: #f74c30ff;
+  --tag_orange_text: #ff8d40ff;
+  --tag_orange_bg: #ff862e33;
+  --tag_purple_text: #aa76f6ff;
+  --tag_purple_bg: #aa76f633;
+  --tag_blue_text: #0099ffff;
+  --tag_blue_bg: #0099ff33;
+  --tag_blue: #0099ff33;
+  --tag_red: #ff862e33;
+  --tag_gray_bg: #9e9e9e33;
+  --tag_gray_text: #9e9e9eff;
+}
+
+.nocopy {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.text-ellipsis {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.q-tag {
+  border-radius: 4px;
+  display: inline-block;
+  font-size: var(--font_size_1);
+  padding: 1px 4px;
+
+  &.q-tag--red {
+    background-color: var(--tag_red_bg);
+    color: var(--tag_red_text);
+  }
+
+  &.q-tag--sage_green {
+    background-color: var(--tag_sage_green_bg);
+    color: var(--tag_sage_green_text);
+  }
+
+  &.q-tag--orange {
+    background-color: var(--tag_orange_bg);
+    color: var(--tag_orange_text);
+  }
+
+  &.q-tag--purple {
+    background-color: var(--tag_purple_bg);
+    color: var(--tag_purple_text);
+  }
+
+  &.q-tag--blue {
+    background-color: var(--tag_blue_bg);
+    color: var(--tag_blue_text);
+  }
+
+  &.q-tag--grey {
+    background-color: var(--tag_gray_bg);
+    color: var(--tag_gray_text);
+  }
+}

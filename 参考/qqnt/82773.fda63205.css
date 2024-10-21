@@ -1,0 +1,75 @@
+.q-menu {
+  -webkit-app-region: no-drag;
+  background: var(--bg_bottom_light);
+  border-radius: 4px;
+  box-shadow: var(--shadow_bg_middle_secondary);
+  display: flex;
+  flex-direction: column;
+  padding: 4px 6px;
+  position: fixed;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  width: -moz-fit-content;
+  width: fit-content;
+  z-index: var(--z-index-max);
+}
+.q-menu__mixed-type .q-context-menu-item__text {
+  margin-left: 24px;
+}
+.q-menu > .q-context-menu-item {
+  align-items: center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  border-radius: 4px;
+  color: var(--text-primary);
+  display: flex;
+  font-weight: 400;
+  justify-content: flex-start;
+  line-height: 16px;
+  margin: 2px 0;
+  padding: 6px 10px;
+}
+.q-menu > .q-context-menu-item .q-context-menu-item__text {
+  white-space: nowrap;
+}
+.q-menu > .q-context-menu-item:hover {
+  background-color: var(--overlay_hover);
+}
+.q-menu > .q-context-menu-item:active {
+  background-color: var(--overlay_pressed);
+}
+.q-menu > .q-context-menu-item[disabled='true'] {
+  background-color: transparent;
+  opacity: 0.3;
+}
+.q-menu > .q-context-menu-item__head {
+  margin-right: 8px;
+}
+.q-menu > .q-context-menu-item .q-checkbox {
+  cursor: default;
+}
+.q-menu .q-context-menu-item__head + .q-context-menu-item__text {
+  margin-left: 0 !important;
+}
+.q-menu > .q-context-menu-separator {
+  background: var(--fill_standard_primary);
+  height: 1px;
+  margin: 2px 10px;
+}
+.setting-context-menu-item {
+  padding: 6px 10px 6px 3px !important;
+}
+.setting-context-menu-item .q-context-menu-item__head {
+  margin: 0 8px 0 0;
+}
+.setting-context-menu-item .q-context-menu-item__text {
+  margin-right: 0 !important;
+}
+.flex-center {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
