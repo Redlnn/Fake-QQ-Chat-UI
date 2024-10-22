@@ -94,6 +94,14 @@ import QVoice from './components/QVoice.vue'
         tag-content="LV96 ln"
         tag-color="purple"
         audio-src="/太好听了8.m4a"
+        text="太好听了8（震声）！！！"
+      ></q-voice>
+      <q-voice
+        user-name="[AntiFurry] 么叽"
+        avatar-url="http://q1.qlogo.cn/g?b=qq&nk=2595201156&s=640"
+        tag-content="LV96 ln"
+        tag-color="purple"
+        audio-src="/欧尼酱快起床.m4a"
       ></q-voice>
     </main>
   </section>

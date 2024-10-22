@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onBeforeUnmount, onBeforeUpdate, onMounted, ref } from 'vue'
 import QMessageItem from './subComponents/QMessageItem.vue'
 import type qTagColor from '@/lib/q-tag-colors'
-import { useEventListener, useIntervalFn } from '@vueuse/core'
 
 const props = withDefaults(
   defineProps<{
@@ -12,63 +11,114 @@ const props = withDefaults(
     tagContent?: string
     tagColor?: qTagColor | keyof typeof qTagColor
     audioSrc: string
+    text?: string
   }>(),
   {
     self: false,
     avatarUrl: '',
     tagContent: undefined,
-    tagColor: undefined
+    tagColor: undefined,
+    text: '[呃，什么都没有听到]'
   }
 )
 
 const showText = ref(false)
-const playFlag = ref(false)
-const duration = ref(10)
+const duration = ref(0)
 const formatedDuration = ref('')
-const audioRef = ref<HTMLAudioElement>()
+const processHeightRefs = ref<number[]>([])
+const audioCtx = ref<AudioContext>()
+const audioBuffer = ref<AudioBuffer>()
+const playEnded = ref(true)
 
-// TODO: 读取音频时长
-// TODO: 显示条形进度条
-
-function convertDbToPercentage(db: number) {
-  const min = -90
-  const max = -10
-
-  if (db >= max) return 1 // 0 dB 为 100%
-  if (db <= min) return 0.05 // -90 dB 为 5%
-
-  // 线性插值计算
-  return ((db - min) / (max - min)) * (1 - 0.05) + 0.05
+// TODO: 进度条动画
+function getLineCount(num: number) {
+  num = num / 1.2
+  if (num < 4) return 4
+  if (num > 30) return 30
+  return num
 }
 
-async function loadAudio(audioSrc: string, numSamples: number) {
+function convertDbToPercentage(db: number) {
+  const min = -80
+  const max = 0
+
+  if (db >= max) return 1 // 0 dB 为 100%
+  if (db <= min) return 0.2 // -90 dB 为 5%
+
+  // 线性插值计算
+  return ((db - min) / (max - min)) * (1 - 0.2) + 0.2
+}
+
+function formatDuration(duration: number) {
+  const m = Math.floor(duration / 60)
+  const s = Math.round(duration % 60)
+  return m > 0 ? `${m}'${s}"` : `${s}"`
+}
+
+async function loadAudio(audioSrc: string) {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  const audioCtx = new (window.AudioContext || window.webkitAudioContext)()
+  audioCtx.value = new (window.AudioContext || window.webkitAudioContext)()
 
   try {
     const res = await fetch(audioSrc)
     const data = await res.arrayBuffer()
-    const audioBuffer = await audioCtx.decodeAudioData(data)
+    audioBuffer.value = await audioCtx.value.decodeAudioData(data)
+    duration.value = audioBuffer.value.duration
 
-    const channelData = audioBuffer.getChannelData(0)
+    const channelData = audioBuffer.value.getChannelData(0)
+    const numSamples = getLineCount(audioBuffer.value.duration)
     const segmentLength = Math.floor(channelData.length / numSamples)
 
     const loudnessArray = Array.from({ length: numSamples }, (_, i) => {
       const segment = channelData.slice(i * segmentLength, (i + 1) * segmentLength)
+      console.log(segment.length)
       const rms = Math.sqrt(segment.reduce((sum, value) => sum + value ** 2, 0) / segment.length)
-      return 20 * Math.log10(rms)
+      const safeRms = Math.max(rms, 1e-10)
+      return 20 * Math.log10(safeRms)
     })
 
-    return loudnessArray.map(convertDbToPercentage)
+    formatedDuration.value = formatDuration(audioBuffer.value.duration)
+    processHeightRefs.value = loudnessArray.map(convertDbToPercentage)
   } catch (error) {
     console.error('Error loading audio file:', error)
-    return Array(10).fill(0.05)
+    formatedDuration.value = 'Error'
+    processHeightRefs.value = Array(10).fill(0.05)
   }
 }
 
-onMounted(() => {
-  console.log(loadAudio(props.audioSrc, 10))
+function play() {
+  if (audioCtx.value === undefined || audioBuffer.value == undefined) return
+  if (playEnded.value) {
+    const source = audioCtx.value.createBufferSource()
+    source.buffer = audioBuffer.value
+    source.connect(audioCtx.value.destination)
+    source.onended = () => {
+      playEnded.value = true
+    }
+    source.start()
+    playEnded.value = false
+  } else {
+    if (audioCtx.value.state === 'running') {
+      audioCtx.value.suspend()
+    } else if (audioCtx.value.state === 'suspended') {
+      audioCtx.value.resume()
+    }
+  }
+}
+
+onMounted(async () => {
+  await loadAudio(props.audioSrc)
+})
+
+onBeforeUpdate(() => {
+  if (audioCtx.value === undefined) return
+  audioCtx.value.close()
+})
+
+onBeforeUnmount(() => {
+  if (audioCtx.value === undefined) return
+  audioCtx.value.close()
 })
 
 // function reset() {
@@ -120,7 +170,7 @@ onMounted(() => {
       @contextmenu.prevent.stop="showText = !showText"
     >
       <div class="ptt-message__inner">
-        <div class="ptt-element">
+        <div class="ptt-element" @click="play">
           <div class="ptt-element__top-area">
             <div class="ptt-element__button">
               <i class="q-svg-icon q-icon" style="width: 10px; height: 10px; --340fd034: inherit">
@@ -137,30 +187,24 @@ onMounted(() => {
                 </svg>
               </i>
             </div>
-            <audio
-              ref="audioRef"
-              :src="audioSrc"
-              @ended="reset"
-              @loadedmetadata="onLoadedmetadata"
-            ></audio>
             <div class="ptt-element__progress">
-              <div class="ptt-element__progress-item" style="height: 93.4118%"></div>
-              <div class="ptt-element__progress-item" style="height: 92.1569%"></div>
-              <div class="ptt-element__progress-item" style="height: 94.0392%"></div>
-              <div class="ptt-element__progress-item" style="height: 94.3529%"></div>
-              <div class="ptt-element__progress-item" style="height: 94.6667%"></div>
-              <div class="ptt-element__progress-item" style="height: 93.4118%"></div>
+              <div
+                v-for="(height, index) in processHeightRefs"
+                :key="index"
+                class="ptt-element__progress-item"
+                :style="{ height: `${height * 100}%` }"
+              ></div>
             </div>
             <div class="ptt-element__duration">
-              <span>4″</span>
+              <span>{{ formatedDuration }}</span>
             </div>
           </div>
         </div>
         <div v-show="showText" class="ptt-element__bottom-area">
           <div class="ptt-element__bottom-area-text">
-            [呃，什么都没有听到]
+            {{ text }}
             <div class="ptt-element__bottom-area-icon" @click="showText = false">
-              <i class="q-svg-icon q-icon" style="width: 1em; height: 1em; --340fd034: inherit">
+              <i class="q-svg-icon q-icon" style="width: 1em; height: 1em">
                 <svg
                   id="arrow_up_24"
                   viewBox="0 0 24 24"
