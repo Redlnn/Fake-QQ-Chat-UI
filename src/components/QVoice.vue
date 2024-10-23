@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onBeforeUpdate, onMounted, ref } from 'vue'
+import { useIntervalFn } from '@vueuse/core'
+
 import QMessageItem from './subComponents/QMessageItem.vue'
 import type qTagColor from '@/lib/q-tag-colors'
 
@@ -22,6 +24,7 @@ const props = withDefaults(
   }
 )
 
+const progressItemsRefs = ref<HTMLDivElement>()
 const showText = ref(false)
 const duration = ref(0)
 const formatedDuration = ref('')
@@ -29,6 +32,7 @@ const processHeightRefs = ref<number[]>([])
 const audioCtx = ref<AudioContext>()
 const audioBuffer = ref<AudioBuffer>()
 const playEnded = ref(true)
+let controller: processController
 
 // TODO: 进度条动画
 function getLineCount(num: number) {
@@ -72,7 +76,6 @@ async function loadAudio(audioSrc: string) {
 
     const loudnessArray = Array.from({ length: numSamples }, (_, i) => {
       const segment = channelData.slice(i * segmentLength, (i + 1) * segmentLength)
-      console.log(segment.length)
       const rms = Math.sqrt(segment.reduce((sum, value) => sum + value ** 2, 0) / segment.length)
       const safeRms = Math.max(rms, 1e-10)
       return 20 * Math.log10(safeRms)
@@ -88,7 +91,13 @@ async function loadAudio(audioSrc: string) {
 }
 
 function play() {
-  if (audioCtx.value === undefined || audioBuffer.value == undefined) return
+  if (
+    audioCtx.value === undefined ||
+    audioBuffer.value === undefined ||
+    progressItemsRefs.value === undefined
+  )
+    return
+
   if (playEnded.value) {
     const source = audioCtx.value.createBufferSource()
     source.buffer = audioBuffer.value
@@ -98,11 +107,70 @@ function play() {
     }
     source.start()
     playEnded.value = false
+
+    progressItemsRefs.value.style.setProperty('--process-item-color', 'var(--text-secondary-01)')
+    controller = new processController(
+      [...progressItemsRefs.value.children] as HTMLDivElement[],
+      audioBuffer.value.duration
+    )
+    controller.start()
   } else {
     if (audioCtx.value.state === 'running') {
       audioCtx.value.suspend()
+      controller.pause()
     } else if (audioCtx.value.state === 'suspended') {
       audioCtx.value.resume()
+      controller.resume()
+    }
+  }
+}
+
+class processController {
+  private progressItems: HTMLDivElement[]
+  private pauseFn: (() => void) | undefined = undefined
+  private resumeFn: (() => void) | undefined = undefined
+  private duration: number
+
+  constructor(progressItems: HTMLDivElement[], duration: number) {
+    this.progressItems = progressItems
+    this.duration = duration
+  }
+
+  start() {
+    let i = 0
+    const { pause, resume } = useIntervalFn(
+      () => {
+        this.progressItems[i].style.setProperty('--process-item-color', 'var(--text_primary)')
+        i++
+        console.log(
+          Math.floor(this.duration),
+          this.progressItems.length,
+          Math.floor(this.duration) / this.progressItems.length
+        )
+        if (i >= this.progressItems.length) {
+          pause()
+          i = 0
+          this.progressItems.forEach(item => item.style.removeProperty('--process-item-color'))
+          progressItemsRefs.value?.style.setProperty('--process-item-color', 'var(--text_primary)')
+        }
+      },
+      (Math.floor(this.duration) / this.progressItems.length) * 1000,
+      { immediate: true }
+    )
+
+    this.pauseFn = pause
+    this.resumeFn = resume
+  }
+
+  pause() {
+    if (this.pauseFn) {
+      this.pauseFn()
+    }
+  }
+
+  resume() {
+    if (this.resumeFn) {
+      this.resumeFn()
     }
   }
 }
@@ -187,7 +255,11 @@ onBeforeUnmount(() => {
                 </svg>
               </i>
             </div>
-            <div class="ptt-element__progress">
+            <div
+              ref="progressItemsRefs"
+              class="ptt-element__progress"
+              style="--process-item-color: var(--text_primary)"
+            >
               <div
                 v-for="(height, index) in processHeightRefs"
                 :key="index"
@@ -370,7 +442,7 @@ onBeforeUnmount(() => {
     color: var(--bubble_guest);
   }
   .ptt-element__progress-item {
-    background-color: var(--text_primary);
+    background-color: var(--process-item-color);
   }
   .ptt-element__duration {
     color: var(--text_primary);
