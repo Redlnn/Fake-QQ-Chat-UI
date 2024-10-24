@@ -25,14 +25,16 @@ const props = withDefaults(
 )
 
 const progressItemsRefs = ref<HTMLDivElement>()
+const processLinePos = ref(0)
 const showText = ref(false)
 const duration = ref(0)
 const formatedDuration = ref('')
 const processHeightRefs = ref<number[]>([])
-const audioCtx = ref<AudioContext>()
 const audioBuffer = ref<AudioBuffer>()
 const playEnded = ref(true)
-let controller: processController
+const playPaused = ref(true)
+let audioCtx: AudioContext | undefined
+let controller: processController | undefined
 
 // TODO: 进度条动画
 function getLineCount(num: number) {
@@ -62,12 +64,12 @@ function formatDuration(duration: number) {
 async function loadAudio(audioSrc: string) {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  audioCtx.value = new (window.AudioContext || window.webkitAudioContext)()
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)()
 
   try {
     const res = await fetch(audioSrc)
     const data = await res.arrayBuffer()
-    audioBuffer.value = await audioCtx.value.decodeAudioData(data)
+    audioBuffer.value = await audioCtx.decodeAudioData(data)
     duration.value = audioBuffer.value.duration
 
     const channelData = audioBuffer.value.getChannelData(0)
@@ -92,21 +94,23 @@ async function loadAudio(audioSrc: string) {
 
 function play() {
   if (
-    audioCtx.value === undefined ||
+    audioCtx === undefined ||
     audioBuffer.value === undefined ||
     progressItemsRefs.value === undefined
   )
     return
 
   if (playEnded.value) {
-    const source = audioCtx.value.createBufferSource()
+    const source = audioCtx.createBufferSource()
     source.buffer = audioBuffer.value
-    source.connect(audioCtx.value.destination)
+    source.connect(audioCtx.destination)
     source.onended = () => {
       playEnded.value = true
+      playPaused.value = true
     }
     source.start()
     playEnded.value = false
+    playPaused.value = false
 
     progressItemsRefs.value.style.setProperty('--process-item-color', 'var(--text-secondary-01)')
     controller = new processController(
@@ -115,21 +119,23 @@ function play() {
     )
     controller.start()
   } else {
-    if (audioCtx.value.state === 'running') {
-      audioCtx.value.suspend()
-      controller.pause()
-    } else if (audioCtx.value.state === 'suspended') {
-      audioCtx.value.resume()
-      controller.resume()
+    if (audioCtx.state === 'running') {
+      audioCtx.suspend()
+      controller?.pause()
+      playPaused.value = true
+    } else if (audioCtx.state === 'suspended') {
+      audioCtx.resume()
+      controller?.resume()
+      playPaused.value = false
     }
   }
 }
 
 class processController {
   private progressItems: HTMLDivElement[]
+  private duration: number
   private pauseFn: (() => void) | undefined = undefined
   private resumeFn: (() => void) | undefined = undefined
-  private duration: number
 
   constructor(progressItems: HTMLDivElement[], duration: number) {
     this.progressItems = progressItems
@@ -138,28 +144,41 @@ class processController {
 
   start() {
     let i = 0
-    const { pause, resume } = useIntervalFn(
+    const { pause: pauseBar, resume: resumeBar } = useIntervalFn(
       () => {
-        this.progressItems[i].style.setProperty('--process-item-color', 'var(--text_primary)')
-        i++
-        console.log(
-          Math.floor(this.duration),
-          this.progressItems.length,
-          Math.floor(this.duration) / this.progressItems.length
-        )
-        if (i >= this.progressItems.length) {
-          pause()
+        if (playEnded.value) {
+          pauseBar()
           i = 0
           this.progressItems.forEach(item => item.style.removeProperty('--process-item-color'))
           progressItemsRefs.value?.style.setProperty('--process-item-color', 'var(--text_primary)')
         }
+        this.progressItems[i].style.setProperty('--process-item-color', 'var(--text_primary)')
+        i++
       },
       (Math.floor(this.duration) / this.progressItems.length) * 1000,
       { immediate: true }
     )
 
-    this.pauseFn = pause
-    this.resumeFn = resume
+    const { pause: pauseLine, resume: resumeLine } = useIntervalFn(
+      () => {
+        if (playEnded.value) {
+          pauseLine()
+          processLinePos.value = 0
+        }
+        processLinePos.value++
+      },
+      (Math.floor(this.duration) / 100) * 1000,
+      { immediate: true }
+    )
+
+    this.pauseFn = () => {
+      pauseBar()
+      pauseLine()
+    }
+    this.resumeFn = () => {
+      resumeBar()
+      resumeLine()
+    }
   }
 
   pause() {
@@ -180,48 +199,14 @@ onMounted(async () => {
 })
 
 onBeforeUpdate(() => {
-  if (audioCtx.value === undefined) return
-  audioCtx.value.close()
+  if (audioCtx === undefined) return
+  audioCtx.close()
 })
 
 onBeforeUnmount(() => {
-  if (audioCtx.value === undefined) return
-  audioCtx.value.close()
+  if (audioCtx === undefined) return
+  audioCtx.close()
 })
-
-// function reset() {
-//   playFlag.value = false
-// }
-// function onLoadedmetadata() {
-//   if (!audioRef.value) return
-//   duration.value = Math.round(audioRef.value.duration)
-//   const m = Math.floor(audioRef.value.duration / 60)
-//   const s = Math.round(audioRef.value.duration % 60)
-//   formatedDuration.value = m > 0 ? `${m}'${s}"` : `${s}"`
-// }
-// async function playVoice() {
-//   if (!audioRef.value) return
-//   if (playFlag.value) {
-//     audioRef.value.pause()
-//     audioRef.value.currentTime = 0
-//     lineRefs.forEach((line: { style: { backgroundColor: string } }) => {
-//       line.style.backgroundColor = 'var(--vp-c-text-1)'
-//     })
-//     playFlag.value = false
-//   } else {
-//     audioRef.value.play()
-//     playFlag.value = true
-//     lineRefs.forEach((line: { style: { backgroundColor: string } }) => {
-//       line.style.backgroundColor = '#999999'
-//     })
-//     for (let index = 0; index < lineRefs.length; index++) {
-//       if (audio.value.paused) return
-//       await sleep((duration.value * 1000) / lineRefs.length).then(() => {
-//         lineRefs[index].style.backgroundColor = 'var(--vp-c-text-1)'
-//       })
-//     }
-//   }
-// }
 </script>
 
 <template>
@@ -243,6 +228,7 @@ onBeforeUnmount(() => {
             <div class="ptt-element__button">
               <i class="q-svg-icon q-icon" style="width: 10px; height: 10px; --340fd034: inherit">
                 <svg
+                  v-if="playPaused"
                   id="play_fill_24"
                   viewBox="0 0 24 24"
                   fill="none"
@@ -253,6 +239,26 @@ onBeforeUnmount(() => {
                     fill="currentColor"
                   ></path>
                 </svg>
+                <svg
+                  v-else
+                  id="pause_24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M17 4C17.5523 4 18 4.44771 18 5L18 19C18 19.5523 17.5523 20 17 20L15 20C14.4477 20 14 19.5523 14 19L14 5C14 4.44771 14.4477 4 15 4L17 4Z"
+                    fill="currentColor"
+                  ></path>
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M9 4C9.55229 4 10 4.44771 10 5L10 19C10 19.5523 9.55228 20 9 20L7 20C6.44772 20 6 19.5523 6 19L6 5C6 4.44771 6.44772 4 7 4L9 4Z"
+                    fill="currentColor"
+                  ></path>
+                </svg>
               </i>
             </div>
             <div
@@ -260,6 +266,11 @@ onBeforeUnmount(() => {
               class="ptt-element__progress"
               style="--process-item-color: var(--text_primary)"
             >
+              <div
+                v-if="!playEnded"
+                class="ptt-element__progress-tag"
+                :style="{ left: `calc(${processLinePos}% - 1px)` }"
+              ></div>
               <div
                 v-for="(height, index) in processHeightRefs"
                 :key="index"
@@ -300,6 +311,11 @@ onBeforeUnmount(() => {
 </template>
 
 <style lang="scss" scoped>
+.ptt-message {
+  display: flex;
+  align-items: center;
+}
+
 .ptt-element__bottom-area {
   font-size: var(--font_size_3);
 }

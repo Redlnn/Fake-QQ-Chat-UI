@@ -15,6 +15,7 @@ withDefaults(
     fileSize?: string
     maxWidth?: string
     maxHeight?: string
+    canDownload?: boolean
   }>(),
   {
     self: false,
@@ -25,7 +26,8 @@ withDefaults(
     fileName: undefined,
     fileSize: undefined,
     maxWidth: '230px',
-    maxHeight: '250px'
+    maxHeight: '250px',
+    canDownload: true
   }
 )
 </script>
@@ -42,6 +44,7 @@ withDefaults(
       class="msg-content-container mix-message__container mix-message__container--pic"
       :class="self ? 'container--self' : 'container--others'"
     >
+      <a v-if="isFile && canDownload" class="file-link" :href="imageUrl" :download="fileName"></a>
       <div class="message-content mix-message__inner">
         <div
           class="image pic-element"
@@ -68,7 +71,19 @@ withDefaults(
   min-width: 0;
   overflow: hidden;
   padding: 0;
+  position: relative;
 }
+.file-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  z-index: 1;
+}
+
 .mix-message__inner {
   width: 100%;
   font-size: 14px;

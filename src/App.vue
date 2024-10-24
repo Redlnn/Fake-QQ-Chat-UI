@@ -3,6 +3,7 @@ import './assets/reset.css'
 import './assets/index.scss'
 
 import QHeader from './components/QHeader.vue'
+import QMain from './components/QMain.vue'
 import QReply from './components/QReply.vue'
 import QText from './components/QText.vue'
 import QImage from './components/QImage.vue'
@@ -14,7 +15,7 @@ import QVoice from './components/QVoice.vue'
 <template>
   <section class="qq">
     <q-header title="FakeQQ" />
-    <main class="qq_container">
+    <q-main>
       <q-tip is-time>20:12</q-tip>
       <q-reply
         self
@@ -54,18 +55,6 @@ import QVoice from './components/QVoice.vue'
         image-url="/85467403_p0.jpg"
       >
       </q-image>
-      <q-image
-        user-name="[AntiFurry] 么叽"
-        avatar-url="http://q1.qlogo.cn/g?b=qq&nk=2595201156&s=640"
-        tag-content="LV96 ln"
-        tag-color="purple"
-        image-url="/85467403_p0.jpg"
-        is-file
-        file-name="85467403_p0.jpg"
-        file-size="1.2MB"
-        max-width="150px"
-      >
-      </q-image>
       <q-tip><a>A60</a>撤回了一条消息</q-tip>
       <q-text
         user-name="[AntiFurry] 么叽"
@@ -78,6 +67,18 @@ import QVoice from './components/QVoice.vue'
         546<br />
         789
       </q-text>
+      <q-image
+        user-name="[AntiFurry] 么叽"
+        avatar-url="http://q1.qlogo.cn/g?b=qq&nk=2595201156&s=640"
+        tag-content="LV96 ln"
+        tag-color="purple"
+        image-url="/85467403_p0.jpg"
+        is-file
+        file-name="85467403_p0.jpg"
+        file-size="1.2MB"
+        max-width="150px"
+      >
+      </q-image>
       <q-file
         user-name="[AntiFurry] 么叽"
         avatar-url="http://q1.qlogo.cn/g?b=qq&nk=2595201156&s=640"
@@ -103,7 +104,7 @@ import QVoice from './components/QVoice.vue'
         tag-color="purple"
         audio-src="/欧尼酱快起床.m4a"
       ></q-voice>
-    </main>
+    </q-main>
   </section>
 </template>
 
@@ -112,13 +113,5 @@ import QVoice from './components/QVoice.vue'
   width: 100%;
   background-color: var(--background-03);
   border-radius: 10px;
-}
-
-.qq_container {
-  padding: 8px 20px;
-
-  & .qq-message-item:first-of-type {
-    padding-top: 0;
-  }
 }
 </style>

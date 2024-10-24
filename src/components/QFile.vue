@@ -13,6 +13,7 @@ withDefaults(
     fileSize?: string
     fileUrl?: string
     fileIconUrl?: string
+    canDownload?: boolean
   }>(),
   {
     self: false,
@@ -21,7 +22,8 @@ withDefaults(
     tagColor: undefined,
     fileSize: undefined,
     fileUrl: undefined,
-    fileIconUrl: undefined
+    fileIconUrl: undefined,
+    canDownload: true
   }
 )
 </script>
@@ -35,7 +37,7 @@ withDefaults(
     :tag-color="tagColor"
   >
     <div class="file-message--content nocopy">
-      <a v-if="fileUrl" class="file-link" :href="fileUrl" :download="fileName"></a>
+      <a v-if="fileUrl && canDownload" class="file-link" :href="fileUrl" :download="fileName"></a>
       <div class="normal-file file-element">
         <div class="file-header">
           <p class="file-name">
