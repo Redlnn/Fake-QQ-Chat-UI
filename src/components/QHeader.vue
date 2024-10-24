@@ -1,9 +1,3 @@
-<script setup lang="ts">
-defineProps<{
-  title: string
-}>()
-</script>
-
 <template>
   <header class="qq-header">
     <div class="qq-header__btn-bar">
@@ -11,7 +5,9 @@ defineProps<{
       <span class="qq-header__btn yellow"></span>
       <span class="qq-header__btn green"></span>
     </div>
-    <div class="qq-header__title">{{ title }}</div>
+    <div class="qq-header__title">
+      <slot></slot>
+    </div>
   </header>
 </template>
 

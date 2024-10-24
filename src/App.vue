@@ -14,15 +14,13 @@ import QVoice from './components/QVoice.vue'
 
 <template>
   <section class="qq">
-    <q-header title="FakeQQ" />
+    <q-header>FakeQQ</q-header>
     <q-main>
       <q-tip is-time>20:12</q-tip>
       <q-reply
         self
         user-name="[AntiFurry] 么叽"
         avatar-url="http://q1.qlogo.cn/g?b=qq&nk=2595201156&s=640"
-        tag-content="LV96 ln"
-        tag-color="purple"
         reply-target-name="方糖"
         reply-target-content="怎么这个支持笔但不支持触屏"
       >
@@ -32,17 +30,17 @@ import QVoice from './components/QVoice.vue'
         user-name="[AntiFurry] 么叽"
         avatar-url="http://q1.qlogo.cn/g?b=qq&nk=2595201156&s=640"
         tag-content="LV96 ln"
-        tag-color="purple"
+        tag-color="sage_green"
         reply-target-name="方糖"
         reply-target-content="怎么这个支持笔但不支持触屏"
       >
-        @方糖 yes
+        <a at>@方糖</a> yes
       </q-reply>
       <q-text
         user-name="[AntiFurry] 么叽"
         avatar-url="http://q1.qlogo.cn/g?b=qq&nk=2595201156&s=640"
         tag-content="LV96 ln"
-        tag-color="purple"
+        tag-color="red"
       >
         123<br />asddasd
       </q-text>
@@ -51,7 +49,7 @@ import QVoice from './components/QVoice.vue'
         user-name="[AntiFurry] 么叽"
         avatar-url="http://q1.qlogo.cn/g?b=qq&nk=2595201156&s=640"
         tag-content="LV96 ln"
-        tag-color="purple"
+        tag-color="orange"
         image-url="/85467403_p0.jpg"
       >
       </q-image>
@@ -62,16 +60,16 @@ import QVoice from './components/QVoice.vue'
         tag-content="LV96 ln"
         tag-color="purple"
       >
-        123
+        <a at>@A60</a> 123
         <img src="/85467403_p0.jpg" />
         546<br />
-        789
+        <a>我是一个链接</a>
       </q-text>
       <q-image
         user-name="[AntiFurry] 么叽"
         avatar-url="http://q1.qlogo.cn/g?b=qq&nk=2595201156&s=640"
         tag-content="LV96 ln"
-        tag-color="purple"
+        tag-color="blue"
         image-url="/85467403_p0.jpg"
         is-file
         file-name="85467403_p0.jpg"
@@ -83,7 +81,6 @@ import QVoice from './components/QVoice.vue'
         user-name="[AntiFurry] 么叽"
         avatar-url="http://q1.qlogo.cn/g?b=qq&nk=2595201156&s=640"
         tag-content="LV96 ln"
-        tag-color="purple"
         file-name="example.json"
         file-size="1.2MB"
         file-icon-url="/code.png"

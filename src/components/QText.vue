@@ -39,7 +39,7 @@ withDefaults(
         class="message-content mix-message__inner"
         :style="{ '--max-image-width': maxImgWidth, '--max-image-height': maxImgHeight }"
       >
-        <slot></slot>
+        <span><slot></slot></span>
       </div>
     </div>
   </q-message-item>
@@ -68,6 +68,18 @@ withDefaults(
     object-position: top center;
     max-width: var(--max-image-width);
     max-height: var(--max-image-height);
+  }
+
+  &:deep() a {
+    color: var(--text_link);
+    text-decoration: underline;
+    word-break: break-all;
+    white-space: pre-wrap;
+  }
+
+  &:deep() a[at] {
+    text-decoration: none;
+    white-space: initial;
   }
 }
 </style>

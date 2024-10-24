@@ -29,6 +29,7 @@ withDefaults(
   color: var(--text_primary_light);
   margin-bottom: 10px;
   padding: 4px 10px;
+  transition: background-color 0.2s ease-in-out;
 
   &:hover {
     background-color: var(--overlay_hover);

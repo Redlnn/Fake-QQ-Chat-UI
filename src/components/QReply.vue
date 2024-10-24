@@ -55,6 +55,18 @@ withDefaults(
     line-height: 21px;
     min-height: 20px;
     overflow: hidden;
+
+    &:deep() a {
+      color: var(--text_link);
+      text-decoration: underline;
+      word-break: break-all;
+      white-space: pre-wrap;
+    }
+
+    &:deep() a[at] {
+      text-decoration: none;
+      white-space: initial;
+    }
   }
 }
 </style>
